@@ -3,11 +3,9 @@ from utils import yield_test_data
 
 def person_lister(f):
     def inner(people) -> list:
-        people = sorted(people, key=lambda x: int(x[2]))
-        results = []
-        for p in people:
-            results.append(f"{'Mr.' if p[3]=='M' else 'Ms.'} {p[0]} {p[1]}")
-        return results
+        people_by_age = sorted(people, key=lambda x: int(x[2]))
+        result = [f(p) for p in people_by_age]
+        return result
     return inner
 
 
